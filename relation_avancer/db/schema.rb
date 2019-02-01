@@ -16,8 +16,10 @@ ActiveRecord::Schema.define(version: 2019_02_01_030505) do
     t.datetime "date"
     t.integer "doctor_id"
     t.integer "patient_id"
+    t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_appointments_on_city_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_030505) do
   end
 
   create_table "doctors", force: :cascade do |t|
+    t.integer "city_id"
     t.string "first_name"
     t.string "last_name"
     t.string "specialty"
@@ -38,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_030505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_id"], name: "index_doctors_on_appointment_id"
+    t.index ["city_id"], name: "index_doctors_on_city_id"
     t.index ["patient_id"], name: "index_doctors_on_patient_id"
   end
 
